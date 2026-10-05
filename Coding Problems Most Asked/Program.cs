@@ -1,5 +1,6 @@
 ﻿
 
+using System.Collections.Specialized;
 using System.Data;
 using System.Text;
 
@@ -66,6 +67,17 @@ public class Program
         Console.WriteLine(string.Join(" ", arrQuick));
         Console.WriteLine("---------------------");
         // ToDo: Linear and Binary search
+
+        Console.WriteLine("Two SUm problem.");
+       int[] twosumArr= TwoSum(arrQuick, 11);
+        foreach(int twosum in twosumArr) Console.WriteLine(twosum);
+        Console.WriteLine("---------------------");
+        Console.WriteLine("Check if a valid parenthesis exist or not");
+       Console.WriteLine(IsValidParentheses("{{}}"));
+
+        Console.WriteLine("----------Two SUmmby 2 Pointer method-----------");
+        int[] twosumArrByPointer = TwoSumByTwoPointersMethod(arrQuick, 11);
+        foreach (int twosum in twosumArrByPointer) Console.WriteLine(twosum);
 
         Console.ReadKey();
     }
@@ -521,6 +533,99 @@ public class Program
         arr[high] = temp2;
 
         return i + 1;
+    }
+
+    /// <summary>
+    /// Find the given sum of two snumber in an array and return these indices
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="target"></param>
+    public static int[] TwoSum(int[] nums, int target)
+    {
+        var map = new Dictionary<int, int>();
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int complement = target - nums[i];
+
+            if (map.TryGetValue(complement, out int index))
+            {
+                return new[] { index, i };
+            }
+
+            map[nums[i]] = i;
+        }
+
+        return Array.Empty<int>();
+    }
+
+    /// <summary>
+    /// check in a given string is a valid parenthesis
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+
+    public static bool IsValidParentheses(string s)
+    {
+        var stack = new Stack<char>();
+
+        foreach (char c in s)
+        {
+            if (c == '(' || c == '[' || c == '{')
+            {
+                stack.Push(c);
+            }
+            else
+            {
+                if (stack.Count == 0)
+                    return false;
+
+                char top = stack.Pop();
+
+                if ((c == ')' && top != '(') ||
+                    (c == ']' && top != '[') ||
+                    (c == '}' && top != '{'))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return stack.Count == 0;
+    }
+
+    /// <summary>
+    /// Two sum by using 2 pointers way
+    /// it reduce O(n²) → O(n)
+    /// </summary>
+    /// <param name="numbers"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+
+    public static int[] TwoSumByTwoPointersMethod(int[] numbers, int target)
+    {
+        int left = 0;
+        int right = numbers.Length - 1;
+
+        while (left < right)
+        {
+            int sum = numbers[left] + numbers[right];
+
+            if (sum == target)
+            {
+                return new[] { left, right };
+            }
+            else if (sum < target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+
+        return Array.Empty<int>();
     }
 
 }
