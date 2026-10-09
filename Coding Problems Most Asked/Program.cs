@@ -1,5 +1,6 @@
 ﻿
 
+using Coding_Problems_Most_Asked;
 using System.Collections.Specialized;
 using System.Data;
 using System.Text;
@@ -8,29 +9,30 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        DSA_Problems dsa = new DSA_Problems();
         string stringForReverse = "ankit";
         Console.WriteLine("---------------------");
-       Console.WriteLine(ReverseString(stringForReverse));
+        Console.WriteLine(String_Problems.ReverseString(stringForReverse));
         Console.WriteLine("---------------------");
-        Console.WriteLine(ReverseString2(stringForReverse));
+        Console.WriteLine(String_Problems.ReverseString2(stringForReverse));
 
         Console.WriteLine("---------------------");
         string stringForPalindrome = "madam";
-        Console.WriteLine(Palindrome(stringForPalindrome));
+        Console.WriteLine(String_Problems.Palindrome(stringForPalindrome));
         Console.WriteLine("---------------------");
         string stringForOrderReverse = "hi ankit how are you";
 
-        Console.WriteLine(ReverseStringOrder(stringForOrderReverse));
+        Console.WriteLine(String_Problems.ReverseStringOrder(stringForOrderReverse));
         Console.WriteLine("---------------------");
-        Console.WriteLine(ReverseEachWordOfString(stringForOrderReverse));
+        Console.WriteLine(String_Problems.ReverseEachWordOfString(stringForOrderReverse));
         Console.WriteLine("---------------------");
-        Console.WriteLine(CountEachCharInString("hello world"));
-        Console.WriteLine("---------------------");
-
-        Console.WriteLine(RemoveDuplicateChars("hello"));
+        Console.WriteLine(String_Problems.CountEachCharInString("hello world"));
         Console.WriteLine("---------------------");
 
-        Console.WriteLine(stringAllSubstring("abcd"));
+        Console.WriteLine(String_Problems.RemoveDuplicateChars("hello"));
+        Console.WriteLine("---------------------");
+
+        Console.WriteLine(String_Problems.stringAllSubstring("abcd"));
         Console.WriteLine("---------------------");
 
 
@@ -46,7 +48,7 @@ public class Program
         Console.WriteLine("---------------------");
 
         FindKthLargest(arrNum, 2);
-        int[] arrDuplicate = { 10, 7, 5, 9, 1, 5,7 };
+        int[] arrDuplicate = { 10, 7, 5, 9, 1, 5, 7 };
         Console.WriteLine("---------------------");
         findDuplicateInArray(arrDuplicate);
         Console.WriteLine("---------------------");
@@ -57,217 +59,135 @@ public class Program
         BubbleSort(arrNum);
         Console.WriteLine("---------------------");
         Console.WriteLine("");
-       int[] arrQuick = { 10, 7, 8, 9, 1, 5 };
+        int[] arrQuick = { 10, 7, 8, 9, 1, 5 };
 
 
         Console.WriteLine("Sorted Arry using quick sort is:");
 
-        QuickSort(arrQuick, 0, arrQuick.Length - 1); 
-        
+        QuickSort(arrQuick, 0, arrQuick.Length - 1);
+
         Console.WriteLine(string.Join(" ", arrQuick));
         Console.WriteLine("---------------------");
         // ToDo: Linear and Binary search
 
-        Console.WriteLine("Two SUm problem.");
-       int[] twosumArr= TwoSum(arrQuick, 11);
-        foreach(int twosum in twosumArr) Console.WriteLine(twosum);
+
         Console.WriteLine("---------------------");
         Console.WriteLine("Check if a valid parenthesis exist or not");
-       Console.WriteLine(IsValidParentheses("{{}}"));
+        Console.WriteLine(DSA_Problems.IsValidParentheses("{{}}"));
+
+        Console.WriteLine("----------Two Sum by Brute force method-----------");
+        int[] twosumArrByBF = DSA_Problems.TwoSumBruteForce(arrQuick, 11);
+        foreach (int twosum in twosumArrByBF) Console.WriteLine(twosum);
 
         Console.WriteLine("----------Two SUmmby 2 Pointer method-----------");
-        int[] twosumArrByPointer = TwoSumByTwoPointersMethod(arrQuick, 11);
+        int[] twosumArrByPointer = DSA_Problems.TwoSumByTwoPointersMethod(arrQuick, 11);
         foreach (int twosum in twosumArrByPointer) Console.WriteLine(twosum);
+
+        Console.WriteLine("----------Two Sum by Dictionary method-----------");
+        int[] twosumArrByDict = DSA_Problems.TwoSumByDictionary(arrQuick, 11);
+        foreach (int twosum in twosumArrByDict) Console.WriteLine(twosum);
+
+        Console.WriteLine("----------Three Sum by Bruteforce method-----------");
+        IList<IList<int>> threesumArrByDict = DSA_Problems.ThreeSumBruteForce(arrQuick);
+        foreach (List<int> threesum in threesumArrByDict) Console.WriteLine(threesum);
+
+        Console.WriteLine("----------Three Sum by two pinter method-----------");
+        IList<IList<int>> threesumArrByPointer = DSA_Problems.ThreeSumByTwoPointer(arrQuick);
+        foreach (List<int> threesum in threesumArrByPointer) Console.WriteLine(threesum);
+
+        Console.WriteLine("----------Remove duplicate and give count by two pointers-----------");
+        int duplicateCount = DSA_Problems.RemoveDuplicatesTwoPointers(arrQuick);
+        Console.WriteLine(duplicateCount);
+
+        Console.WriteLine("----------Remove duplicate and give count by list approach-----------");
+        int duplicateCountByList = DSA_Problems.RemoveDuplicatesListApproach(arrQuick);
+        Console.WriteLine(duplicateCountByList);
+
+        Console.WriteLine("----------Remove duplicate and give count by hash set-----------");
+        int duplicateCountByhashSet = DSA_Problems.RemoveDuplicatesByHashSet(arrQuick);
+        Console.WriteLine(duplicateCountByhashSet);
+
+
+        Console.WriteLine("----------Water container problem with bruteforce-----------");
+        int area = DSA_Problems.MaxAreaBruteForce(arrQuick);
+        Console.WriteLine(area);
+
+        Console.WriteLine("----------Water container problem with two pointer-----------");
+        int areaByTwoPointer = DSA_Problems.MaxAreaTwoPointer(arrQuick);
+        Console.WriteLine(areaByTwoPointer);
+
+        Console.WriteLine("----------Merge array simple approach-----------");
+        int[] mergedArr = DSA_Problems.MergeArray(arrQuick, arrDuplicate);
+        foreach (var item in mergedArr)
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("----------Merge array simple approach-----------");
+        int[] mergedArrTwoPinter = DSA_Problems.MergeSortedArraysByTwoPointer(arrQuick, arrDuplicate);
+        foreach (var item in mergedArrTwoPinter)
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine("----------Max Sum by variable size window-----------");
+        int sum = DSA_Problems.MaxSumFixSizeWindow(arrQuick, 3);
+        Console.WriteLine(sum);
+
+        Console.WriteLine("----------Max window length by variable size window-----------");
+        int size = DSA_Problems.LongestSubarrayVariableSize(arrQuick, 8);
+        Console.WriteLine(size);
+
+        Console.WriteLine("----------Given a string, find the length of the longest substring that contains no repeated characters-----------");
+        int length = DSA_Problems.LengthOfLongestSubstring("abcabcbb");
+        Console.WriteLine(length);
+
+        Console.WriteLine("----------Group anargam problem of hashmap or dictioanry-----------");
+        string[] arrAnargam = ["eat", "tea", "tan", "ate", "nat", "bat"];
+        IList<IList<string>> anargamStrings = DSA_Problems.GroupAnagrams(arrAnargam);
+        foreach (List<string> str in anargamStrings)
+        {
+            Console.WriteLine(" ");
+            foreach (string str2 in str)
+            {
+                Console.Write(str2);
+                Console.Write(',');
+            }
+        }
+
+        int[] frequentElementArr = [1, 1, 1, 2, 2, 3, 4];
+        Console.WriteLine(" ");
+        Console.WriteLine("----------Tok k frequent element-----------");
+        List<int> lst = DSA_Problems.TopKFrequent(frequentElementArr, 2);
+        foreach (int i in lst)
+        {
+            Console.WriteLine(i);
+        }
+
+        int[] arrSubarr = [1, 2, 3];
+        Console.WriteLine(" ");
+        Console.WriteLine("----------total number of continuous subarrays whose sum equals k-by dictionary----------");
+        int sumSubArr = DSA_Problems.SubarraySumByHashDictionary(arrSubarr, 3);
+        Console.WriteLine(sumSubArr);
+
+        Console.WriteLine(" ");
+        Console.WriteLine("----------total number of continuous subarrays whose sum equals k---by sliding window--------");
+        sumSubArr = DSA_Problems.SubarraySumBySlidingWin(arrSubarr, 3);
+        Console.WriteLine(sumSubArr);
+
+        Console.WriteLine(" ");
+        Console.WriteLine("----------total number of continuous subarrays whose sum equals k-----by brute force------");
+        sumSubArr = DSA_Problems.SubarraySumByBruteForce(arrSubarr, 3);
+        Console.WriteLine(sumSubArr);
+
+
+
+
+
 
         Console.ReadKey();
     }
-
-    /// String reverse
-    /// 
-
-    public static string ReverseString(string str)
-    {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = str.Length - 1; i >= 0; i--)
-        {
-            sb.Append(str[i]);
-        }
-
-        return sb.ToString();
-    }
-
-    public static string ReverseString2(string str)
-    {
-        char[] charArray = str.ToCharArray();
-        for (int i = 0, j = str.Length - 1; i < j; i++, j--)
-        {
-
-            charArray[i] = charArray[j];
-            charArray[j] = str[i];
-
-        }
-
-        string reversedString = new string(charArray);
-        return reversedString;
-
-    }
-
-    /// string is palindrome or not
-    /// 
-
-    public static bool Palindrome(string str)
-    {
-        bool isPalindrome = false;
-
-        string reversed = ReverseString2(str);
-        if (reversed.Equals(str))
-        {
-            isPalindrome = true;
-        }
-
-        return isPalindrome;
-    }
-
-
-    /// Reverse order of words in a string 
-    /// like "Hi ankit how are you" output=> you are how ankit hi"
-    /// 
-
-    public static string ReverseStringOrder(string str)
-    {
-        string reverseOrder = "";
-
-        string[] strArray = str.Split(' ');
-        string temp;
-        for (int i = 0, j = strArray.Length - 1; i < j; i++, j--)
-        {
-
-            temp = strArray[i];
-            strArray[i] = strArray[j];
-            strArray[j] = temp;
-        }
-
-        reverseOrder = string.Join(" ", strArray);
-
-        return reverseOrder;
-
-    }
-
-    /// Reverse each word in a string
-    /// like "hi ankit how are you" => "uoy era woh tikna ih"
-    /// 
-
-    public static string ReverseEachWordOfString(string str)
-    {
-
-        string reversed = ReverseString2((str));
-
-        return reversed;
-    }
-
-    /// count the occurrence of each character in a string
-    /// like hello world => h – 1,   e – 1, l – 3, o – 2,w – 1,r – 1,d – 1
-    /// 
-
-    public static string CountEachCharInString(string str)
-    {
-
-        // using with Dictionary
-
-        Dictionary<char, int> charCount = new Dictionary<char, int>();
-        foreach (char c in str)
-        {
-
-            if (c == ' ') continue;
-            if (charCount.ContainsKey(c))
-            {
-                charCount[c]++;
-            }
-            else
-            {
-                charCount.Add(c, 1);
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-        foreach (var item in charCount)
-        {
-            sb.Append($"{item.Key}={item.Value}, ");
-        }
-        return sb.ToString();
-
-
-        //----------------------------
-        // Using ASCII array
-
-        //int[] count = new int[256];
-
-        //foreach (char c in str)
-        //{
-        //    if (c != ' ')
-        //        count[c]++;
-        //}
-        //for (int i = 0; i < count.Length; i++)
-        //{
-        //    if (count[i] > 0)
-        //    {
-        //        Console.Write($"{(char)i} - {count[i]}, ");
-        //    }
-        //}
-        //return "";
-
-        //// using Linq
-        ///
-        //var characterCount = str.GroupBy(c => c)
-        //                      .ToDictionary(g => g.Key, g => g.Count());
-        //foreach (var kvp in characterCount)
-        //{
-        //    Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-        //}
-    }
-
-
-    /// remove duplicate characters from a string
-    /// like hello=> helo
-    /// 
-
-    public static string RemoveDuplicateChars(string str)
-    {
-
-        string fineString = string.Empty;
-        for (int i = 0; i < str.Length; i++)
-        {
-
-            if (!fineString.Contains(str[i]))
-            {
-                fineString += str[i];
-            }
-
-        }
-
-        return fineString;
-    }
-
-    /// find all possible substring of a given string
-    /// like abcd , output : a ab abc abcd b bc bcd c cd d
-    /// 
-
-    public static string stringAllSubstring(string str)
-    {
-        StringBuilder newString = new StringBuilder();
-        for (int i = 0; i < str.Length; i++)
-        {
-            StringBuilder subString = new StringBuilder();
-
-            for (int j = i; j < str.Length; j++)
-            {
-                subString.Append(str[j]);
-                newString.Append(subString.ToString());
-                newString.Append(',');
-            }
-        }
-        return newString.ToString();
-    }
+    
 
     /// perform Left circular rotation of an array
     /// like input: 1 2 3 4 5, output: 2 3 4 5 1
@@ -400,12 +320,13 @@ public class Program
     ///  get the duplicate numbers in an array
     /// </summary>
     /// <param name="arr"></param>
-    public static void findDuplicateInArray(int[] arr) {
+    public static void findDuplicateInArray(int[] arr)
+    {
         //// without using any function
 
         Dictionary<int, int> duplicate = new Dictionary<int, int>();
 
-        int count = 0;
+        //int count = 0;
         foreach (int number in arr)
         {
             if (!duplicate.ContainsKey(number))
@@ -484,7 +405,8 @@ public class Program
                 break;
         }
         Console.WriteLine("Sorted array is:");
-        foreach (int i in arr) {           
+        foreach (int i in arr)
+        {
             Console.Write($"{i}, ");
         }
     }
@@ -535,97 +457,5 @@ public class Program
         return i + 1;
     }
 
-    /// <summary>
-    /// Find the given sum of two snumber in an array and return these indices
-    /// </summary>
-    /// <param name="num"></param>
-    /// <param name="target"></param>
-    public static int[] TwoSum(int[] nums, int target)
-    {
-        var map = new Dictionary<int, int>();
-
-        for (int i = 0; i < nums.Length; i++)
-        {
-            int complement = target - nums[i];
-
-            if (map.TryGetValue(complement, out int index))
-            {
-                return new[] { index, i };
-            }
-
-            map[nums[i]] = i;
-        }
-
-        return Array.Empty<int>();
-    }
-
-    /// <summary>
-    /// check in a given string is a valid parenthesis
-    /// </summary>
-    /// <param name="s"></param>
-    /// <returns></returns>
-
-    public static bool IsValidParentheses(string s)
-    {
-        var stack = new Stack<char>();
-
-        foreach (char c in s)
-        {
-            if (c == '(' || c == '[' || c == '{')
-            {
-                stack.Push(c);
-            }
-            else
-            {
-                if (stack.Count == 0)
-                    return false;
-
-                char top = stack.Pop();
-
-                if ((c == ')' && top != '(') ||
-                    (c == ']' && top != '[') ||
-                    (c == '}' && top != '{'))
-                {
-                    return false;
-                }
-            }
-        }
-
-        return stack.Count == 0;
-    }
-
-    /// <summary>
-    /// Two sum by using 2 pointers way
-    /// it reduce O(n²) → O(n)
-    /// </summary>
-    /// <param name="numbers"></param>
-    /// <param name="target"></param>
-    /// <returns></returns>
-
-    public static int[] TwoSumByTwoPointersMethod(int[] numbers, int target)
-    {
-        int left = 0;
-        int right = numbers.Length - 1;
-
-        while (left < right)
-        {
-            int sum = numbers[left] + numbers[right];
-
-            if (sum == target)
-            {
-                return new[] { left, right };
-            }
-            else if (sum < target)
-            {
-                left++;
-            }
-            else
-            {
-                right--;
-            }
-        }
-
-        return Array.Empty<int>();
-    }
 
 }
